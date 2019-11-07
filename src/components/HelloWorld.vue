@@ -1,18 +1,18 @@
 <template>
   <v-container>
-    <v-layout text-center wrap>
-      <v-flex xs12>
+    <v-row>
+      <v-col cols="12">
         <v-img
           :src="require('../assets/logo.svg')"
           class="my-3"
           contain
           height="200"
         ></v-img>
-      </v-flex>
+      </v-col>
 
-      <v-flex mb-4>
+      <v-col md="4">
         <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
+          {{ msg }}
         </h1>
         <p class="subheading font-weight-regular">
           For help and collaboration with other Vuetify developers,
@@ -21,9 +21,9 @@
             >Discord Community</a
           >
         </p>
-      </v-flex>
+      </v-col>
 
-      <v-flex mb-5 xs12>
+      <v-col md="5" cols="12">
         <h2 class="headline font-weight-bold mb-3">What's next?</h2>
 
         <v-layout justify-center>
@@ -37,9 +37,9 @@
             {{ next.text }}
           </a>
         </v-layout>
-      </v-flex>
+      </v-col>
 
-      <v-flex xs12 mb-5>
+      <v-col cols="12" md="5">
         <h2 class="headline font-weight-bold mb-3">Important Links</h2>
 
         <v-layout justify-center>
@@ -53,9 +53,9 @@
             {{ link.text }}
           </a>
         </v-layout>
-      </v-flex>
+      </v-col>
 
-      <v-flex xs12 mb-5>
+      <v-col cols="12" md="5">
         <h2 class="headline font-weight-bold mb-3">Ecosystem</h2>
 
         <v-layout justify-center>
@@ -69,68 +69,72 @@
             {{ eco.text }}
           </a>
         </v-layout>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Vue, Component, Prop } from "vue-property-decorator";
 
-export default Vue.extend({
-  name: "HelloWorld",
+@Component
+export default class HelloWorld extends Vue {
+  @Prop({ type: String, default: "undefined" }) msg!: string;
 
-  data: () => ({
-    ecosystem: [
-      {
-        text: "vuetify-loader",
-        href: "https://github.com/vuetifyjs/vuetify-loader"
-      },
-      {
-        text: "github",
-        href: "https://github.com/vuetifyjs/vuetify"
-      },
-      {
-        text: "awesome-vuetify",
-        href: "https://github.com/vuetifyjs/awesome-vuetify"
-      }
-    ],
-    importantLinks: [
-      {
-        text: "Documentation",
-        href: "https://vuetifyjs.com"
-      },
-      {
-        text: "Chat",
-        href: "https://community.vuetifyjs.com"
-      },
-      {
-        text: "Made with Vuetify",
-        href: "https://madewithvuejs.com/vuetify"
-      },
-      {
-        text: "Twitter",
-        href: "https://twitter.com/vuetifyjs"
-      },
-      {
-        text: "Articles",
-        href: "https://medium.com/vuetify"
-      }
-    ],
-    whatsNext: [
-      {
-        text: "Explore components",
-        href: "https://vuetifyjs.com/components/api-explorer"
-      },
-      {
-        text: "Select a layout",
-        href: "https://vuetifyjs.com/layout/pre-defined"
-      },
-      {
-        text: "Frequently Asked Questions",
-        href: "https://vuetifyjs.com/getting-started/frequently-asked-questions"
-      }
-    ]
-  })
-});
+  ecosystem: linkItem[] = [
+    {
+      text: "vuetify-loader",
+      href: "https://github.com/vuetifyjs/vuetify-loader"
+    },
+    {
+      text: "github",
+      href: "https://github.com/vuetifyjs/vuetify"
+    },
+    {
+      text: "awesome-vuetify",
+      href: "https://github.com/vuetifyjs/awesome-vuetify"
+    }
+  ];
+  importantLinks: linkItem[] = [
+    {
+      text: "Documentation",
+      href: "https://vuetifyjs.com"
+    },
+    {
+      text: "Chat",
+      href: "https://community.vuetifyjs.com"
+    },
+    {
+      text: "Made with Vuetify",
+      href: "https://madewithvuejs.com/vuetify"
+    },
+    {
+      text: "Twitter",
+      href: "https://twitter.com/vuetifyjs"
+    },
+    {
+      text: "Articles",
+      href: "https://medium.com/vuetify"
+    }
+  ];
+  whatsNext: linkItem[] = [
+    {
+      text: "Explore components",
+      href: "https://vuetifyjs.com/components/api-explorer"
+    },
+    {
+      text: "Select a layout",
+      href: "https://vuetifyjs.com/layout/pre-defined"
+    },
+    {
+      text: "Frequently Asked Questions",
+      href: "https://vuetifyjs.com/getting-started/frequently-asked-questions"
+    }
+  ];
+}
+
+interface linkItem {
+  text: string;
+  href: string;
+}
 </script>
