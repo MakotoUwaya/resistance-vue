@@ -32,26 +32,17 @@
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
-
     <v-content>
-      <HelloWorld />
+      <v-fade-transition mode="out-in">
+        <router-view></router-view>
+      </v-fade-transition>
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import { Vue, Component } from "vue-property-decorator";
 
-export default Vue.extend({
-  name: "App",
-
-  components: {
-    HelloWorld
-  },
-
-  data: () => ({
-    //
-  })
-});
+@Component
+export default class App extends Vue {}
 </script>
